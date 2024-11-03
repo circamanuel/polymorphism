@@ -1,3 +1,5 @@
+import java.awt.print.Book;
+
 public class Movie {
 
     private String title;
@@ -8,14 +10,75 @@ public class Movie {
     public void watchMovie() {
 
         String instanceType = this.getClass().getSimpleName();
-        System.out.ptintln(title + "is a " + instnceType + " film");
+        System.out.println(title + " is a " + instanceType + " film");
+    }
+
+    public static Movie getMovie(String type, String title){
+
+            return switch ( type.toUpperCase().charAt(0) ){
+                  case'A' -> new Adventure(title);
+                  case'C' -> new Comedy(title);
+                  case'S' -> new ScienceFiction(title);
+                  default -> new Movie(title);
+        };
     }
 }
 
 class Adventure extends Movie {
 
-    public Adventure(String title) {ls
-            
+    public Adventure(String title) {
         super(title);
+    }
+
+    @Override
+    public void watchMovie() {
+        super.watchMovie();
+        System.out.printf("..%s%n".repeat(3),
+                "Pleasant Scene",
+                "Scary Music",
+                "Something Bad Happens");
+    }
+
+    public void watchadventure() {
+        System.out.println("Watching an Adventure");
+    }
+}
+
+class Comedy extends Movie {
+
+    public Comedy(String title) {
+        super(title);
+    }
+
+    @Override
+    public void watchMovie() {
+        super.watchMovie();
+        System.out.printf("..%s%n".repeat(3),
+                "Something funny happens",
+                "Something even funnier happens",
+                "Happy Ending");
+    }
+    public void watchComedy() {
+        System.out.println("Watching a Comedy");
+    }
+}
+
+class ScienceFiction extends Movie {
+
+    public ScienceFiction(String title) {
+        super(title);
+    }
+
+    @Override
+    public void watchMovie() {
+        super.watchMovie();
+        System.out.printf("..%s%n".repeat(3),
+                "Bad Aliens do Bad stuff",
+                "Space Guys Chases Aliens",
+                "Planet Blows Up ");
+    }
+
+    public void watchScienceFiction() {
+        System.out.println("Watching a Science Fiction");
     }
 }
